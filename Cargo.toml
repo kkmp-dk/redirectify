@@ -1,0 +1,12 @@
+[package]
+name = "redirectify"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+open = "5.3.1"
+url = "2.5.4"
+
+[[bin]]
+name = "installer"
+path = "src/installer.rs"  # Path to your installer code

@@ -1,0 +1,36 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Redirectify]
+@="Redirectify URL Handler"
+"FriendlyTypeName"="Redirectify"
+
+[HKEY_CLASSES_ROOT\Redirectify\shell\open\command]
+@="\"C:\\Users\\kkmp\\.cargo\\bin\\redirectify.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Redirectify\DefaultIcon]
+@="\"C:\\Users\\kkmp\\.cargo\\bin\\redirectify.exe\",0"
+
+[HKEY_CURRENT_USER\Software\Classes\Redirectify]
+@="Redirectify URL Handler"
+"FriendlyTypeName"="Redirectify"
+
+[HKEY_CURRENT_USER\Software\Classes\Redirectify\shell\open\command]
+@="\"C:\\Users\\kkmp\\.cargo\\bin\\redirectify.exe\" \"%1\""
+
+[HKEY_CURRENT_USER\Software\Classes\Redirectify\DefaultIcon]
+@="\"C:\\Users\\kkmp\\.cargo\\bin\\redirectify.exe\",0"
+
+[HKEY_CURRENT_USER\Software\Clients\StartMenuInternet\Redirectify]
+@="Redirectify"
+"LocalizedString"="Redirectify"
+
+[HKEY_CURRENT_USER\Software\Clients\StartMenuInternet\Redirectify\Capabilities]
+"ApplicationName"="Redirectify"
+"ApplicationDescription"="Custom URL handler"
+
+[HKEY_CURRENT_USER\Software\Clients\StartMenuInternet\Redirectify\Capabilities\URLAssociations]
+"http"="Redirectify"
+"https"="Redirectify"
+
+[HKEY_CURRENT_USER\Software\RegisteredApplications]
+"Redirectify"="Software\\Clients\\StartMenuInternet\\Redirectify\\Capabilities"
