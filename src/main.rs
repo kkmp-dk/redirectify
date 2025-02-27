@@ -4,9 +4,9 @@ use std::env::args;
 use url::Url;
 
 fn main() {
-    let url_str = args().skip(1).next().unwrap();
+    let url_string = args().skip(1).next().unwrap();
 
-    let parsed_url: Url = match Url::parse(url_str.as_str()) {
+    let parsed_url: Url = match Url::parse(url_string.as_str()) {
         Ok(parsed_url) => parsed_url,
         Err(e) => {
             eprintln!("Failed to parse URL: {}", e);
@@ -26,8 +26,8 @@ fn main() {
     if hostname.ends_with("safelinks.protection.outlook.com") {
         let query_pairs: Vec<String> = parsed_url
             .query_pairs()
-        .map(|(key, value)| format!("'{key}'='{value}'")).collect()
-        ;
+            .map(|(key, value)| format!("'{key}'='{value}'"))
+            .collect();
 
         println!("it is microsoft safelink. {query_pairs:?}");
 
@@ -35,22 +35,32 @@ fn main() {
             .query_pairs()
             .find(|(key, _)| key.to_lowercase() == "url")
         {
-            let url = url.to_string();
             println!("Safe link. OpenUrl: {url:?}");
 
-            let result = open::with(url, "msedge");
+            let parsed_url: Url = match Url::parse(url.as_ref()) {
+                Ok(parsed_url) => parsed_url,
+                Err(e) => {
+                    eprintln!("Failed to parse URL: {}", e);
+                    return;
+                }
+            };
 
-            match result {
-                Ok(_) => (),
-                Err(error) => println!("Error: {error:?}"),
+            let hostname = parsed_url.host_str().unwrap().to_lowercase();
+            if hostname.ends_with("goto.netcompany.com") {
+                let result = open::with(parsed_url.to_string(), "msedge");
+
+                match result {
+                    Ok(_) => (),
+                    Err(error) => println!("Error: {error:?}"),
+                }
+
+                return;
             }
-
-            return;
         };
     }
 
     if hostname.ends_with("goto.netcompany.com") {
-        let result = open::with(url_str, "msedge");
+        let result = open::with(url_string, "msedge");
 
         match result {
             Ok(_) => (),
@@ -60,8 +70,8 @@ fn main() {
         return;
     }
 
-    println!("Open {url_str} in firefox");
-    let result = open::with(url_str, "firefox");
+    println!("Open {url_string} in firefox");
+    let result = open::with(url_string, "firefox");
 
     match result {
         Ok(_) => (),
