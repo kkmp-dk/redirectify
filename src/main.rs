@@ -4,7 +4,18 @@ use std::env::args;
 use url::Url;
 
 fn main() {
-    let url_string = args().skip(1).next().unwrap();
+    program();
+}
+
+fn program() {
+    let mut url_string = args().skip(1).next().unwrap();
+
+    if let Some((_, rest_part)) = url_string.split_once("redirect:")
+    {
+        println!("rest_part: {rest_part}");
+        url_string = rest_part.to_owned();
+    };
+    println!("url_string: {url_string}");
 
     let parsed_url: Url = match Url::parse(url_string.as_str()) {
         Ok(parsed_url) => parsed_url,
