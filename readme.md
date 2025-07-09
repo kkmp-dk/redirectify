@@ -39,4 +39,5 @@ You would have to install either FireMonkey (Firefox) or Violentmonkey
 for (chrome derivates).
 After you have installed the FireMonkey or Violentmonkey you should be able to
 just press the link down below and it will ask you to install it.
-[Open with redirectify ](.\open_with_redirectify.user.js)
+[Open with redirectify ](open_with_redirectify.user.js)
+*If it don't ask you. Click the the ***RAW*** Button*
