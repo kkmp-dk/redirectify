@@ -1,6 +1,18 @@
+# Install instructions
+## Prerequisite
+Ensure you have the correct rules in main.rs before you compile and install it.
 
-## Install by making sure these keys exits.
-Please don't use the installer script. it is not working for now
+## Install the program
+
+Ensure that you are at the root of the project then install the program by
+running: `cargo install --path .`
+
+Install a new version by doing the same comand when you update it.
+
+
+
+## Install by making sure these keys exits in regidit.exe.
+Please don't use the installer script. It is not working for now.
 
 ```reg
 HKEY_CLASSES_ROOT
@@ -18,50 +30,13 @@ HKEY_CLASSES_ROOT
 
 
 
-## Add the following to your browser javascript runner ;)
-```javascript
-// ==UserScript==
-// @name         Open Links with System Default Handler for 'redirect'
-// @version      0.1
-// @description  Open links using the custom redirect protocol. using Ctrl + Shift + Left Click.
-// @author       kkmp
-// @match        *://*/*
-// @grant        GM_openInTab
-// ==/UserScript==
+## Install browser extensions
+The browser extension is for being able to Ctrl + Shift + Left Click then it will
+then try to open the link in your preferred browser.
 
 
-(function () {
-  'use strict';
-
-  // Listen for mouse clicks on the document
-  document.addEventListener('click', function (event) {
-    // Check if Ctrl + Shift are pressed and it's a left click
-    if (event.ctrlKey && event.shiftKey && event.button === 0) {
-      // Prevent the default browser behavior
-      event.preventDefault();
-
-      // Find the clicked element
-      let target = event.target;
-
-      // Traverse up the DOM tree to find the nearest <a> tag
-      while (target && target.tagName !== 'A') {
-        target = target.parentElement;
-      }
-
-      // If a link is found, process it
-      if (target && target.href) {
-        const link = target.href;
-
-        // Use the custom redirect protocol
-        const redirectLink = `redirect:${link}`;
-        //window.open(redirectLink, '_blank');
-        GM_openInTab(redirectLink);
-
-        // Log the action for debugging
-        console.log(`Opening link with redirect protocol: ${redirectLink}`);
-      }
-    }
-  });
-})();
-
-```
+You would have to install either FireMonkey (Firefox) or Violentmonkey
+for (chrome derivates).
+After you have installed the FireMonkey or Violentmonkey you should be able to
+just press the link down below and it will ask you to install it.
+[Open with redirectify ](.\open_with_redirectify.user.js)
